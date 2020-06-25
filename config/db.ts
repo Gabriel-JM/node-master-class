@@ -1,7 +1,7 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const connectDB = async () => {
-  const conn = await mongoose.connect(process.env.MONGO_URI, {
+  const conn = await mongoose.connect(process.env.MONGO_URI as string, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -11,4 +11,4 @@ const connectDB = async () => {
   console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline.bold)
 }
 
-module.exports = connectDB
+export default connectDB

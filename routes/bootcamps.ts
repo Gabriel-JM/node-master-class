@@ -1,11 +1,11 @@
-const { Router } = require('express')
-const {
+import { Router } from 'express'
+import {
   getBootcamps,
   getBootcamp,
   createBootcamp,
   updateBootcamp,
   deleteBootcamp
-} = require('../controllers/bootcamps')
+} from '../controllers/bootcamps'
 
 const router = Router()
 
@@ -20,4 +20,4 @@ router
   .put(updateBootcamp)
   .delete(deleteBootcamp)
 
-module.exports = router
+export default router

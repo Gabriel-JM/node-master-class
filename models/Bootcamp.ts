@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const BootcampSchema = new mongoose.Schema({
   name: {
@@ -98,4 +98,4 @@ const BootcampSchema = new mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model('Bootcamp', BootcampSchema)
+export default mongoose.model('Bootcamp', BootcampSchema)

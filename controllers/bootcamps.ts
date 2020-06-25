@@ -1,10 +1,11 @@
-const ErrorResponse = require('../utils/ErrorResponse')
-const Bootcamp = require('../models/Bootcamp')
+import { Request, Response, NextFunction } from 'express'
+import ErrorResponse from '../utils/ErrorResponse'
+import Bootcamp from '../models/Bootcamp'
 
 //@desc    Get all bootcamps
 //@route   GET /api/v1/bootcamps
 //@access  Public
-exports.getBootcamps = async (req, res, next) => {
+export const getBootcamps = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const bootcamps = await Bootcamp.find()
 
@@ -20,7 +21,7 @@ exports.getBootcamps = async (req, res, next) => {
 //@desc    Get a single bootcamp
 //@route   GET /api/v1/bootcamps/:id
 //@access  Public
-exports.getBootcamp = async (req, res, next) => {
+export const getBootcamp = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const bootcamp = await Bootcamp.findById(req.params.id)
 
@@ -45,7 +46,7 @@ exports.getBootcamp = async (req, res, next) => {
 //@desc    Create new bootcamp
 //@route   POST /api/v1/bootcamps
 //@access  Private
-exports.createBootcamp = async (req, res, next) => {
+export const createBootcamp = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const bootcamp = await Bootcamp.create(req.body)
 
@@ -61,7 +62,7 @@ exports.createBootcamp = async (req, res, next) => {
 //@desc    Update bootcamp
 //@route   PUT /api/v1/bootcamps/:id
 //@access  Private
-exports.updateBootcamp = async (req, res, next) => {
+export const updateBootcamp = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const bootcamp = await Bootcamp.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -89,7 +90,7 @@ exports.updateBootcamp = async (req, res, next) => {
 //@desc    Delete bootcamp
 //@route   DELETE /api/v1/bootcamps/:id
 //@access  Private
-exports.deleteBootcamp = async (req, res, next) => {
+export const deleteBootcamp = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const result = await Bootcamp.findByIdAndDelete(req.params.id)
 

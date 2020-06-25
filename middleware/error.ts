@@ -1,7 +1,8 @@
-const ErrorResponse = require('../utils/ErrorResponse')
+import ErrorResponse from '../utils/ErrorResponse'
+import { Request, Response, NextFunction } from 'express'
 
-function errorHandler(err, req, res, next) {
-  let error = {...err}
+function errorHandler(err: any, req: Request, res: Response, next: NextFunction) {
+  let error = { ...err }
   error.message = err.message
 
   console.log(err)
@@ -18,8 +19,8 @@ function errorHandler(err, req, res, next) {
   }
 
   if(err.name === 'ValidationError') {
-    const message = Object.values(err.errors).map(val => val.message)
-    error = new ErrorResponse(message, 400)
+    const message = Object.values(err.errors).map((val: any) => val.message)
+    error = new ErrorResponse(message.toString(), 400)
   }
   
   const statusCode = err.statusCode || 500
@@ -29,4 +30,4 @@ function errorHandler(err, req, res, next) {
   })
 }
 
-module.exports = errorHandler
+export default errorHandler
