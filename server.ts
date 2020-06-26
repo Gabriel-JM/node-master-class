@@ -10,6 +10,8 @@ import bootcampsRoutes from './routes/bootcamps'
 
 const PORT = process.env.PORT || 5000
 
+colors.enable()
+
 // Load env config
 dotenv.config({ path: './config/config.env' })
 
@@ -33,13 +35,13 @@ app.use(errorHandler)
 const server = app.listen(
   PORT,
   () => console.log(
-    `Serve running in ${process.env.NODE_ENV} mode | port ${PORT}`.yellow.bold
+    colors.yellow(`Serve running in ${process.env.NODE_ENV} mode | port ${PORT}`)
   )
 )
 
 // Handle unhandled rejections
 process.on('unhandledRejection', (err: Error, promise) => {
-  console.log(`Error: ${err.message}`.red)
+  console.log(colors.red(`Error: ${err.message}`))
   //Close server & exit process
   server.close(() => process.exit(1))
 })

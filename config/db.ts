@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import { cyan, underline } from 'colors/safe'
 
 const connectDB = async () => {
   const conn = await mongoose.connect(process.env.MONGO_URI as string, {
@@ -8,7 +9,13 @@ const connectDB = async () => {
     useFindAndModify: false
   })
   
-  console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline.bold)
+  console.log(
+    cyan(
+      underline(
+        `MongoDB Connected: ${conn.connection.host}`
+      )
+    )
+  )
 }
 
 export default connectDB

@@ -1,9 +1,15 @@
 import ErrorResponse from '../utils/ErrorResponse'
 import { Request, Response, NextFunction } from 'express'
 
-function errorHandler(err: any, req: Request, res: Response, next: NextFunction) {
-  let error = { ...err }
-  error.message = err.message
+export interface RequestError extends Error {
+  value: string | number
+  code: string | number
+  statusCode: number
+  errors: Error[]
+}
+
+function errorHandler(err: RequestError, req: Request, res: Response, next: NextFunction) {
+  let error: Error = { ...err }
 
   console.log(err)
   
