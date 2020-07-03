@@ -1,17 +1,9 @@
 import ErrorResponse from '../utils/ErrorResponse'
 import { Request, Response, NextFunction } from 'express'
-
-export interface RequestError extends Error {
-  value: string | number
-  code: string | number
-  statusCode: number
-  errors: Error[]
-}
+import { RequestError } from './types-interfaces'
 
 function errorHandler(err: RequestError, req: Request, res: Response, next: NextFunction) {
   let error: Error = { ...err }
-
-  console.log(err)
   
   if(err.name === 'CastError') {
     const message = `Resource not found with id of ${err.value}`
@@ -34,6 +26,8 @@ function errorHandler(err: RequestError, req: Request, res: Response, next: Next
     success: false,
     error: error.message || 'Server Error'
   })
+
+  next()
 }
 
 export default errorHandler
